@@ -3,12 +3,12 @@
 differences=" $(git log --pretty="%s" $(git describe --tags --abbrev=0)..HEAD)"
 
 while read -r line; do
-    if [[ "$line" == *"BREAKING CHANGE:"* ]]; then
+    if [[ "$line" == "BREAKING CHANGE:"* ]]; then
         version="major"
         break
-    elif [[ "$line" == *"feat"* ]]; then
+    elif [[ "$line" == "feature"* ]]; then
         version="minor"
-    elif [[ "$line" == *"fix"* ]] || [[ "$line" == *"refactor"* ]]; then
+    elif [[ "$line" == "fix"* ]] || [[ "$line" == *"refactor"* ]]; then
         if [[ $version != "minor" ]]; then
             version="patch"
         fi;
